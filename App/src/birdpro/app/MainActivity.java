@@ -8,6 +8,7 @@ public class MainActivity extends Activity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+    	//Min kommentar er sterkere ennd din
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }
