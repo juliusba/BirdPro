@@ -149,3 +149,28 @@ started,bundle,org.eclipse.wst.validation,1.2.303.v201202090300,"org.eclipse.wst
 started,bundle,org.eclipse.jst.j2ee,1.1.503.v201202090300,"org.eclipse.jst.j2ee",1346155496421
 started,bundle,org.eclipse.jdt.apt.core,3.3.500.v20110420-1015,"org.eclipse.jdt.apt.core",1346155496450
 activated,workbench,org.eclipse.ui.workbench,3.7.1.v20120104-1859,"",1346155496581
+executed,command,org.eclipse.ui,3.7.0.v20110928-1505,"org.eclipse.ui.newWizard",1346155496590
+started,bundle,org.eclipse.debug.ui,3.7.102.v20111129-1423_r372,"org.eclipse.debug.ui",1346155497026
+started,bundle,org.eclipse.wst.dtd.ui,1.0.600.v201103171359,"org.eclipse.wst.dtd.ui",1346155497429
+started,bundle,org.eclipse.compare.core,3.5.200.I20110208-0800,"org.eclipse.compare.core",1346155497495
+started,bundle,org.eclipse.wst.xsl.ui,1.1.200.v201103082057,"org.eclipse.wst.xsl.ui",1346155497529
+opened,editor,com.android.ide.eclipse.adt,20.0.3.v201208082019-427395,"com.android.ide.eclipse.editors.CommonXmlEditor",1346155497620
+activated,editor,com.android.ide.eclipse.adt,20.0.3.v201208082019-427395,"com.android.ide.eclipse.editors.CommonXmlEditor",1346155497766
+started,bundle,org.eclipse.jst.ws.jaxws.dom.integration,1.0.101.v201201031437,"org.eclipse.jst.ws.jaxws.dom.integration",1346155497850
+started,bundle,org.eclipse.jst.ws.jaxws.dom.ui,1.0.0.v201004171919,"org.eclipse.jst.ws.jaxws.dom.ui",1346155497856
+error,log,,,"Core exception while retrieving the content description",1346155498238
+error,log,,,"Core exception while retrieving the content description",1346155498240
+error,log,,,"Core exception while retrieving the content description",1346155498243
+error,log,,,"Core exception while retrieving the content description",1346155498245
+error,log,,,"Core exception while retrieving the content description",1346155498247
+error,log,,,"Core exception while retrieving the content description",1346155498250
+deactivated,workbench,org.eclipse.ui.workbench,3.7.1.v20120104-1859,"",1346155503877
+activated,workbench,org.eclipse.ui.workbench,3.7.1.v20120104-1859,"",1346155572581
+activated,view,org.eclipse.ui.navigator.resources,3.4.300.v20110928-1505,"org.eclipse.ui.navigator.ProjectExplorer",1346155572615
+activated,editor,com.android.ide.eclipse.adt,20.0.3.v201208082019-427395,"com.android.ide.eclipse.editors.CommonXmlEditor",1346155576351
+executed,command,org.eclipse.ui,3.7.0.v20110928-1505,"org.eclipse.ui.file.save",1346155584801
+deactivated,workbench,org.eclipse.ui.workbench,3.7.1.v20120104-1859,"",1346155585366
+activated,workbench,org.eclipse.ui.workbench,3.7.1.v20120104-1859,"",1346156396798
+activated,view,org.eclipse.ui.navigator.resources,3.4.300.v20110928-1505,"org.eclipse.ui.navigator.ProjectExplorer",1346156400985
+opened,editor,org.eclipse.jdt.ui,3.7.2.v20120109-1427,"org.eclipse.jdt.ui.CompilationUnitEditor",1346156403705
+started,bundle,org.eclipse.jdt.debug,3.7.1.v20111006_r372,"org.eclipse.jdt.debug",1346156403835
