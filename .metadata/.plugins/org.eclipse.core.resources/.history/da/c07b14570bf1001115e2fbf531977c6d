@@ -24,11 +24,4 @@
         android:layout_marginTop="41dp"
         android:text="ToggleButton" />
 
-    <RatingBar
-        android:id="@+id/ratingBar1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/textView1"
-        android:layout_centerHorizontal="true" />
-
 </RelativeLayout>
