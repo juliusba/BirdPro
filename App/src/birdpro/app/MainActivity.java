@@ -13,6 +13,7 @@ public class MainActivity extends Activity {
     }
 
     //Testkommentar
+    //Testkommentar 2
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
