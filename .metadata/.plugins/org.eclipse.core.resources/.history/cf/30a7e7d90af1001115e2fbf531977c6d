@@ -11,9 +11,7 @@
         android:layout_centerVertical="true"
         android:text="@string/hello_world"
         tools:context=".MainActivity" />
-	
-    //LOL
-    
+
     <ToggleButton
         android:id="@+id/toggleButton1"
         android:layout_width="wrap_content"
