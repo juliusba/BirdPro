@@ -1,5 +1,7 @@
-package birdpro.app;
+package controller;
 
+import service.DBService;
+import birdpro.app.R;
 import android.os.Bundle;
 
 import android.support.v4.app.FragmentActivity;
@@ -15,6 +17,8 @@ public class MainActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_main);
+        
+        DBService.init(this);
         
         FragmentManager fragmentManager = getSupportFragmentManager();
 		FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
