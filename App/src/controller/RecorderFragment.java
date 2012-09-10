@@ -41,14 +41,14 @@ public class RecorderFragment extends Fragment {
 			
 			recording = true;
 			Log.i(LOG_TAG, "Start recorder");
-			//RecorderService.getInstance().startRecording();
+			RecorderService.getInstance().startRecording();
 		}
 		else{
 			recButton.setBackgroundResource(R.drawable.rec_start);
 			
 			recording = false;
 			Log.i(LOG_TAG, "Stop recorder");
-			//RecorderService.getInstance().stopRecording();
+			RecorderService.getInstance().stopRecording();
 		}
 	}
 }

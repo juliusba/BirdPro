@@ -18,18 +18,19 @@ public final class R {
         public static final int ic_action_search=0x7f020001;
         public static final int ic_launcher=0x7f020002;
         public static final int ic_rec=0x7f020003;
-        public static final int rec_button_normal=0x7f020004;
-        public static final int rec_button_normal2=0x7f020005;
-        public static final int rec_button_pressed=0x7f020006;
-        public static final int rec_button_pressed2=0x7f020007;
-        public static final int rec_start=0x7f020008;
-        public static final int rec_start_normal=0x7f020009;
-        public static final int rec_start_pressed=0x7f02000a;
-        public static final int rec_stop=0x7f02000b;
-        public static final int rec_stop2=0x7f02000c;
-        public static final int rec_stop_normal=0x7f02000d;
-        public static final int rec_stop_pressed=0x7f02000e;
-        public static final int smooth_rectangle=0x7f02000f;
+        public static final int play=0x7f020004;
+        public static final int rec_button_normal=0x7f020005;
+        public static final int rec_button_normal2=0x7f020006;
+        public static final int rec_button_pressed=0x7f020007;
+        public static final int rec_button_pressed2=0x7f020008;
+        public static final int rec_start=0x7f020009;
+        public static final int rec_start_normal=0x7f02000a;
+        public static final int rec_start_pressed=0x7f02000b;
+        public static final int rec_stop=0x7f02000c;
+        public static final int rec_stop2=0x7f02000d;
+        public static final int rec_stop_normal=0x7f02000e;
+        public static final int rec_stop_pressed=0x7f02000f;
+        public static final int smooth_rectangle=0x7f020010;
     }
     public static final class id {
         public static final int fragment_container=0x7f080000;
