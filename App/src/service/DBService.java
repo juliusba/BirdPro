@@ -1,10 +1,8 @@
 package service;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 
 import model.Track;
-import model.Track.Status;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -69,13 +67,13 @@ public class DBService extends SQLiteOpenHelper {
         // TODO I think we have to preserve the old data, but not sure.
 	}
 	
-	public long addTrack(String name, Calendar length, Calendar date) {
+	public long addTrack(String name, long length, long date) {
 	    SQLiteDatabase db = getWritableDatabase();
 	 
 	    ContentValues values = new ContentValues();
 	    values.put(COL_NAME, name);
-	    values.put(COL_LENGTH, length.getTimeInMillis());
-	    values.put(COL_DATE, date.getTimeInMillis());
+	    values.put(COL_LENGTH, length);
+	    values.put(COL_DATE, date);
 	 
 	    long id = db.insert(TABLE_TRACKS, null, values);
 	    db.close();
@@ -113,36 +111,48 @@ public class DBService extends SQLiteOpenHelper {
         		new String[] { COL_STATUS, COL_NAME, COL_LENGTH, COL_DATE, COL_PROPOSED_SPECIE, COL_SPECIE },
         		COL_ID + "=?",
                 new String[] { String.valueOf(id) },
-                null, null, null, null);
+                null,
+                null,
+                null,
+                null);
         if (cursor != null)
             cursor.moveToFirst();
         
-        Status status = Status.INITIAL;
-        switch(Integer.parseInt(cursor.getString(0))){
-        	case 0:
-        		break;
-        	case 1:
-        		status = Status.TOBESENDT;
-        		break;
-        	case 2:
-        		status = Status.SENDT;
-        		break;
-        	case 3:
-        		status = Status.ANSWERED;
-        		break;
-        }
+        int status = cursor.getInt(0);
         String name = cursor.getString(1);
-        Calendar length = Calendar.getInstance();
-        length.setTimeInMillis(Long.parseLong(cursor.getString(2)));
-        Calendar date = Calendar.getInstance();
-        date.setTimeInMillis(Long.parseLong(cursor.getString(3)));
+        long length = Long.parseLong(cursor.getString(2));
+        long date = Long.parseLong(cursor.getString(3));
         String proposedSpecie = cursor.getString(4);
         String specie = cursor.getString(5);
         return new Track(id, status, name, length, date, proposedSpecie, specie);
     }
 	
 	public ArrayList<Track> getAllTracks(){
+		SQLiteDatabase db = this.getReadableDatabase();
+		Cursor cursor = db.query(TABLE_TRACKS,
+				new String[] {COL_ID, COL_STATUS, COL_NAME, COL_LENGTH, COL_DATE, COL_PROPOSED_SPECIE, COL_SPECIE}, 
+                null, 
+                null, 
+                null, 
+                null, 
+                null);
+		
 		ArrayList<Track> tracks = new ArrayList<Track>();
+		
+		if (cursor.moveToFirst())
+        {
+            do {
+                tracks.add(new Track(
+                		cursor.getLong(0),
+                		cursor.getInt(1),
+                		cursor.getString(2),
+                		cursor.getLong(3),
+                		cursor.getLong(4),
+                		cursor.getString(5),
+                		cursor.getString(6)));
+            } while (cursor.moveToNext());
+        }
+		db.close();
 		return tracks;
 	}
 }

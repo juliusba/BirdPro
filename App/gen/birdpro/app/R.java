@@ -33,8 +33,10 @@ public final class R {
         public static final int smooth_rectangle=0x7f020010;
     }
     public static final class id {
+        public static final int dateView=0x7f080004;
         public static final int fragment_container=0x7f080000;
-        public static final int menu_settings=0x7f080003;
+        public static final int menu_settings=0x7f080005;
+        public static final int playButton=0x7f080003;
         public static final int recButton=0x7f080001;
         public static final int trackList=0x7f080002;
     }
@@ -42,6 +44,7 @@ public final class R {
         public static final int activity_main=0x7f030000;
         public static final int recorder_view=0x7f030001;
         public static final int track_list_view=0x7f030002;
+        public static final int track_view=0x7f030003;
     }
     public static final class menu {
         public static final int activity_main=0x7f070000;

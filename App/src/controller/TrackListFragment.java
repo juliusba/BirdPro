@@ -1,16 +1,23 @@
 package controller;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Locale;
 
 import model.Model;
 import model.Track;
 
 import birdpro.app.R;
+import android.content.Context;
 import android.location.Address;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.widget.SimpleCursorAdapter;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,11 +29,12 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
-public class TrackListFragment extends Fragment {
+public class TrackListFragment extends Fragment implements PropertyChangeListener {
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		Model.getInstance().addPropertyChangeListener(this);
 	}
 	
 	@Override
@@ -39,42 +47,45 @@ public class TrackListFragment extends Fragment {
 		
 		ArrayList<Track> tracks = Model.getInstance().getTracks();
 		for(Track track : tracks){
-			
-		}
-		
-		for(int i=0; i<10; i++){
-			TableRow row = new TableRow(getActivity());
-			Button playButton = new Button(getActivity());
-			playButton.setBackgroundResource(R.drawable.play);
-			//playButton.setLayoutParams(new LayoutParams(48, 48));
-			row.addView(playButton);
-			TextView date = new TextView(getActivity());
-			date.setText("04.09.2012");
-			row.addView(date);
-			trackList.addView(row);
+			trackList.addView(createViewForTrack(track, inflater));
 		}
 		
 		return view;
 	}
+
+	public void propertyChange(PropertyChangeEvent event) {
+		String propertyName = event.getPropertyName();		
+		if(propertyName == Model.PROPERTY_CHANGE_TRACK_CREATED){
+			TableLayout trackList = (TableLayout) getActivity().findViewById(R.id.trackList);
+			LayoutInflater inflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+			Log.i("", ((Track) event.getNewValue()).length + "");
+			//trackList.addView(createViewForTrack( (Track) event.getNewValue(), inflater));
+		}
+	}
 	
-	private TableRow createViewForTrack(Track track){
+	private TableRow createViewForTrack(Track track, LayoutInflater inflater){
+		final long id = track.id;
+		
 		TableRow row = new TableRow(getActivity());
+		Button playButton = new Button(getActivity());
+		playButton.setBackgroundResource(R.drawable.play);
+		playButton.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				playRecording(id);
+			}
+		});
+		//playButton.setLayoutParams(new LayoutParams(48, 48));
+		row.addView(playButton);
+		TextView date = new TextView(getActivity());
+		
+		String lol = track.date.get(Calendar.DATE) + " September " + track.date.get(Calendar.HOUR_OF_DAY) + ":" + track.date.get(Calendar.MINUTE); 
+		date.setText(lol);
+		row.addView(date);
 		
 		return row;
 	}
 	
-	/*
-	@Override
-	public void onActivityCreated(Bundle savedInstanceState) {
-		FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-		FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+	private void playRecording(long id){
 		
-		ArrayList<Long> tracks = Model.getInstance().getTracks();
-		for(long track : tracks){
-			fragmentTransaction.add(R.id.trackList, new TrackFragment(track));
-		}
-		fragmentTransaction.commit();
-		
-		super.onActivityCreated(savedInstanceState);
-	}*/
+	}
 }

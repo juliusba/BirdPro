@@ -1,7 +1,8 @@
 package model;
 
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
-import java.util.Calendar;
 
 import model.Track.Status;
 
@@ -12,6 +13,11 @@ public class Model {
 	
 	private static final String LOG_TAG = "Model";
 	private static Model _model;
+	private PropertyChangeSupport listeners = new PropertyChangeSupport(this);
+	
+	public static final String PROPERTY_CHANGE_TRACK_CREATED = "tc";
+	public static final String PROPERTY_CHANGE_TRACK_UPDATED = "tu";
+	public static final String PROPERTY_CHANGE_TRACK_DELETED = "td";
 	
 	private Model(){}
 	
@@ -24,11 +30,25 @@ public class Model {
 	}
 	
 	public ArrayList<Track> getTracks(){
-		return DBService.getInstance().getAllTracks();
+		ArrayList<Track> tracks = DBService.getInstance().getAllTracks();
+		
+		return tracks;
 	}
 	
-	public Track addTrack(String name, Calendar length, Calendar date){
+	public Track addTrack(String name, long length, long date){
 		long id = DBService.getInstance().addTrack(name, length, date);
-		return new Track(id, Status.INITIAL, name, length, date, null, null);
+		Track createdTrack = new Track(id, Status.INITIAL.getNumericValue(), name, length, date, null, null);
+		listeners.firePropertyChange(PROPERTY_CHANGE_TRACK_CREATED, null, createdTrack);
+		return createdTrack;
+	}
+	
+	public void addPropertyChangeListener(PropertyChangeListener l) 
+	{
+		listeners.addPropertyChangeListener(l);
+	}
+
+	public void removePropertyChangeListener(PropertyChangeListener l) 
+	{
+		listeners.removePropertyChangeListener(l);
 	}
 }

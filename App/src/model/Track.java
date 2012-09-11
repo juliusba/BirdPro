@@ -31,12 +31,28 @@ public class Track {
 	public String proposedSpecie;
 	public String specie;
 	
-	public Track(long id, Status status, String name, Calendar length, Calendar date, String proposedSpecie, String specie){
+	public Track(long id, int status, String name, long length, long date, String proposedSpecie, String specie){
 		this.id = id;
-		this.status = status;
+		
+		this.status = Status.INITIAL;
+        switch(status){
+        	case 0:
+        		break;
+        	case 1:
+        		this.status = Status.TOBESENDT;
+        		break;
+        	case 2:
+        		this.status = Status.SENDT;
+        		break;
+        	case 3:
+        		this.status = Status.ANSWERED;
+        		break;
+        }
 		this.name = name;
-		this.length = length;
-		this.date = date;
+		this.length = Calendar.getInstance();
+		this.length.setTimeInMillis(length);
+		this.date = Calendar.getInstance();
+		this.date.setTimeInMillis(date);
 		this.proposedSpecie = proposedSpecie;
 		this.specie = specie;
 	}

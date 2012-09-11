@@ -14,6 +14,7 @@ public class RecorderService {
 	private static final String LOG_TAG = "RecordService";
 	private MediaRecorder recorder = null;
 	private String fileName;
+	private long recordStart;
 	
     private RecorderService(){}
     
@@ -39,16 +40,18 @@ public class RecorderService {
             Log.e(LOG_TAG, "prepare() failed");
         }
 
+        recordStart = Calendar.getInstance().getTimeInMillis();
         recorder.start();
         Log.i(LOG_TAG, "recorder startet");
     }
 
     public void stopRecording() {
         recorder.stop();
+        long length = Calendar.getInstance().getTimeInMillis() - recordStart;
         recorder.reset();
         recorder.release();
         recorder = null;
-        Model.getInstance().addTrack(fileName, Calendar.getInstance(), Calendar.getInstance());
+        Model.getInstance().addTrack(fileName, length, Calendar.getInstance().getTimeInMillis());
     }
 	
 }

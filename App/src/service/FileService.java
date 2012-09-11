@@ -35,7 +35,7 @@ public class FileService {
 	    int num = 1;
 	    File file = new File(fileName + ".3gp");
 	    while(file.exists()){
-	    	file = new File(fileName + "(" + num + ")");
+	    	file = new File(fileName + "(" + num + ").3gp");
 	    	num++;
 	    }
 	    
