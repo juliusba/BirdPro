@@ -9,24 +9,24 @@ import model.Track.Status;
 import service.DBService;
 import android.util.Log;
 
-public class Model {
+public class Tracks {
 	
 	private static final String LOG_TAG = "Model";
-	private static Model _model;
+	private static Tracks _tracks;
 	private PropertyChangeSupport listeners = new PropertyChangeSupport(this);
 	
 	public static final String PROPERTY_CHANGE_TRACK_CREATED = "tc";
 	public static final String PROPERTY_CHANGE_TRACK_UPDATED = "tu";
 	public static final String PROPERTY_CHANGE_TRACK_DELETED = "td";
 	
-	private Model(){}
+	private Tracks(){}
 	
-	public static Model getInstance(){
-		if(_model==null){
-			_model = new Model();
+	public static Tracks getInstance(){
+		if(_tracks==null){
+			_tracks = new Tracks();
 			Log.i(LOG_TAG, "Service created");
 		}
-		return _model;
+		return _tracks;
 	}
 	
 	public ArrayList<Track> getTracks(){

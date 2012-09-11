@@ -62,9 +62,7 @@ public class DBService extends SQLiteOpenHelper {
 
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_TRACKS);
-        onCreate(db);
-        // TODO I think we have to preserve the old data, but not sure.
+        
 	}
 	
 	public long addTrack(String name, long length, long date) {

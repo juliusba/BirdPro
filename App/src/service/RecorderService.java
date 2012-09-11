@@ -3,7 +3,7 @@ package service;
 import java.io.IOException;
 import java.util.Calendar;
 
-import model.Model;
+import model.Tracks;
 
 import android.media.MediaRecorder;
 import android.util.Log;
@@ -27,7 +27,7 @@ public class RecorderService {
     }
     
     public void startRecording() {
-    	fileName = FileService.getInstance().createFileName();
+    	fileName = FileService.createFileName();
     	recorder = new MediaRecorder();
         recorder.setAudioSource(MediaRecorder.AudioSource.MIC);
         recorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
@@ -51,7 +51,7 @@ public class RecorderService {
         recorder.reset();
         recorder.release();
         recorder = null;
-        Model.getInstance().addTrack(fileName, length, Calendar.getInstance().getTimeInMillis());
+        Tracks.getInstance().addTrack(fileName, length, Calendar.getInstance().getTimeInMillis());
     }
 	
 }

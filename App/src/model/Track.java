@@ -56,5 +56,4 @@ public class Track {
 		this.proposedSpecie = proposedSpecie;
 		this.specie = specie;
 	}
-	
 }

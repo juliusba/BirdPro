@@ -4,26 +4,19 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Locale;
 
-import model.Model;
 import model.Track;
+import model.Tracks;
 
 import birdpro.app.R;
 import android.content.Context;
-import android.location.Address;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v4.widget.SimpleCursorAdapter;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewGroup.LayoutParams;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -34,7 +27,7 @@ public class TrackListFragment extends Fragment implements PropertyChangeListene
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		Model.getInstance().addPropertyChangeListener(this);
+		Tracks.getInstance().addPropertyChangeListener(this);
 	}
 	
 	@Override
@@ -45,7 +38,7 @@ public class TrackListFragment extends Fragment implements PropertyChangeListene
 		view.setScrollbarFadingEnabled(true);
 		view.setFadingEdgeLength(50);
 		
-		ArrayList<Track> tracks = Model.getInstance().getTracks();
+		ArrayList<Track> tracks = Tracks.getInstance().getTracks();
 		for(Track track : tracks){
 			trackList.addView(createViewForTrack(track, inflater));
 		}
@@ -55,7 +48,7 @@ public class TrackListFragment extends Fragment implements PropertyChangeListene
 
 	public void propertyChange(PropertyChangeEvent event) {
 		String propertyName = event.getPropertyName();		
-		if(propertyName == Model.PROPERTY_CHANGE_TRACK_CREATED){
+		if(propertyName == Tracks.PROPERTY_CHANGE_TRACK_CREATED){
 			TableLayout trackList = (TableLayout) getActivity().findViewById(R.id.trackList);
 			LayoutInflater inflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 			Log.i("", ((Track) event.getNewValue()).length + "");
