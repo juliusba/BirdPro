@@ -2,6 +2,7 @@ package controller;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -10,12 +11,15 @@ import model.Tracks;
 
 import birdpro.app.R;
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewGroup.LayoutParams;
 import android.widget.Button;
 import android.widget.ScrollView;
 import android.widget.TableLayout;
@@ -52,7 +56,7 @@ public class TrackListFragment extends Fragment implements PropertyChangeListene
 			TableLayout trackList = (TableLayout) getActivity().findViewById(R.id.trackList);
 			LayoutInflater inflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 			Log.i("", ((Track) event.getNewValue()).length + "");
-			//trackList.addView(createViewForTrack( (Track) event.getNewValue(), inflater));
+			trackList.addView(createViewForTrack( (Track) event.getNewValue(), inflater));
 		}
 	}
 	
@@ -67,7 +71,7 @@ public class TrackListFragment extends Fragment implements PropertyChangeListene
 				playRecording(id);
 			}
 		});
-		//playButton.setLayoutParams(new LayoutParams(48, 48));
+		playButton.setLayoutParams(new LayoutParams(48, 48));
 		row.addView(playButton);
 		TextView date = new TextView(getActivity());
 		
@@ -79,6 +83,10 @@ public class TrackListFragment extends Fragment implements PropertyChangeListene
 	}
 	
 	private void playRecording(long id){
-		
+		Intent intent = new Intent();  
+        intent.setAction(android.content.Intent.ACTION_VIEW);  
+        //File file = new File(<Need file URI address>);  
+        //intent.setDataAndType(Uri.fromFile(file), "audio/*");  
+        startActivity(intent);
 	}
 }
